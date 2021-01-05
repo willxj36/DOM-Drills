@@ -40,8 +40,9 @@ document.addEventListener('DOMContentLoaded', function() {
     for (i = 0; i < headers.length; i++) {
         headers[i].addEventListener('dblclick', function() {
             let colorList = ['red', 'blue', 'orange', 'purple', 'yellow', 'green', 'cyan', 'pink'];
-            headers[i].style.color = colorList[Math.floor(Math.random() * colorList.length)];
-        });
+            event.target.style.color = colorList[Math.floor(Math.random() * colorList.length)];
+            }
+        );
     };
 })
 
