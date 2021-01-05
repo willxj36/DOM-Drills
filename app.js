@@ -38,11 +38,36 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let headers = [h1, h2, h3, h4, h5, h6];
     for (i = 0; i < headers.length; i++) {
-        headers[i].addEventListener('dblclick', function() {
-            let colorList = ['red', 'blue', 'orange', 'purple', 'yellow', 'green', 'cyan', 'pink'];
-            event.target.style.color = colorList[Math.floor(Math.random() * colorList.length)];
-            }
-        );
+        headers[i].addEventListener('dblclick', randomColor);
+    };
+
+    let clickNum = [];
+    let list = document.getElementsByClassName('list');
+    list[0].addEventListener('click', listAdd);
+    
+    
+    function randomColor() {
+        let colorList = ['red', 'blue', 'orange', 'purple', 'yellow', 'green', 'cyan', 'pink'];
+        event.target.style.color = colorList[Math.floor(Math.random() * colorList.length)];
+    };
+    
+    function listAdd() {
+        let ul = document.createElement('ul');
+        let li = document.createElement('li');
+        clickNum.push(1);
+        document.body.appendChild(ul);
+        ul.appendChild(li);
+        li.textContent = "This is list item " + clickNum.length;
+        li.className = 'li';
+        let listItems = document.getElementsByClassName('li');
+        for (i = 0; i < listItems.length; i++) {
+            listItems[i].addEventListener('click', randomColor);
+        };
+        for (i = 0; i <listItems.length; i++) {
+            listItems[i].addEventListener('dblclick', function() {
+                event.target.remove();
+            });
+        };
     };
 })
 
